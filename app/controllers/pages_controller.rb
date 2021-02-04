@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
     def index
         if user_signed_in?
-            render 'main/index'
+            redirect_to recipes_path
         else
             render 'pages/index'
         end

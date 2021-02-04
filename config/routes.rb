@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
+  devise_for :users, :paths => 'users'
   resources :friends
-  resources :recipes do
-    resources :comments
+  resources :users do
+    resources :recipes do
+      resources :comments
+    end
   end
-  devise_for :users
+  
   root 'pages#index'
   get 'main', to: 'main#index'
-  get 'search', to: 'users#search'
+  get 'search', to: 'recipes#search'
+  get 'recipes', to: 'recipes#all'
 end

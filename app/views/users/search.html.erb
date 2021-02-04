@@ -1,31 +1,35 @@
+<%= render 'layouts/partials/notices' %>
 <%= render 'users/searchform' %>
-<% if @users.count > 0 %>
+<% if @users %>
     <h1>Results</h1>
-    
-    <% @users.each do |user| %>
-        <% if user.id != current_user.id %>
-        <div class="card">
-            <div class="card-body">
-                <div class="float-left">
-                    <h6><%= user.email %></h6>
-                </div>
-                <div class="float-right">
-                    <% if @friends.count > 0 %>
-                        <% @friends.each do |friend| %>
-                            <% if friend.friend_id == user.id %>
-                                <%= link_to 'Unfollow', friend, method: :delete, class:"btn btn-danger btn-sm" %>
-                            <% else %>
-                                <%= link_to "Follow", friends_path(:user_id => current_user.id, :friend_id => user.id), :method => :post, class:"btn btn-light btn-sm" %>
+    <% if @users.count == 1 && @users[0].id == current_user.id %>
+        <p>Your query returned 0 users.</p>
+    <% elsif @users.count > 0 %>
+        <% @users.each do |user| %>
+            <% if user.id != current_user.id %>
+            <div class="card bg-light">
+                <div class="card-body">
+                    <div class="float-left">
+                        <h6><%= user.email %></h6>
+                    </div>
+                    <div class="float-right">
+                        <% if @friends.count > 0 %>
+                            <% @friends.each do |friend| %>
+                                <% if friend.friend_id == user.id %>
+                                    <%= link_to 'Unfollow', friend, method: :delete, class:"btn btn-danger btn-sm" %>
+                                <% else %>
+                                    <%= link_to "Follow", friends_path(:user_id => current_user.id, :friend_id => user.id), :method => :post, class:"btn btn-light btn-sm" %>
+                                <% end %>
                             <% end %>
+                        <% else %>
+                            <%= link_to "Follow", friends_path(:user_id => current_user.id, :friend_id => user.id), :method => :post, class:"btn btn-light btn-sm" %>
                         <% end %>
-                    <% else %>
-                        <%= link_to "Follow", friends_path(:user_id => current_user.id, :friend_id => user.id), :method => :post, class:"btn btn-light btn-sm" %>
-                    <% end %>
+                    </div>
                 </div>
             </div>
-        </div>
+            <% end %>
         <% end %>
+    <% else %>
+        <p>Your query returned <%= @friends.count %> users.</p>
     <% end %>
-<% else %>
-    <p>No results found.</p>
 <% end %>

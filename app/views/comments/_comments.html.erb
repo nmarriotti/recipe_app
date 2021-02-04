@@ -1,8 +1,19 @@
-<h3>Comments</h3>
+<h3>Comments (<%= @recipe.comments.count %>)</h3>
 <% @recipe.comments.each do |comment| %>
     <div class="card bg-light">
     <div class="card-body">
-        <%= comment.comment %>
+
+        <div class="float-left">
+            <strong><%= comment.name %></strong>
+            <p><%= comment.comment %></p>
+        </div>
+
+        <div class="float-right">
+            <small><%= comment.created_at.strftime("%b %d %Y %I:%M %p") %></small>
+        </div>
+
+        
+
     </div>
     </div>
     <br>

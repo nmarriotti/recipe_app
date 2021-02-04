@@ -1,0 +1,26 @@
+<h1 class="display-3">Recipe Book</h1>
+<br>
+<!-- start recipe search form -->
+<form action="/search">
+  <div class="form-row align-items-center">
+    <div class="col-sm-6 my-1">
+      <input type="text" name="q" class="form-control" id="inlineFormInputName" placeholder="Find a recipe">
+    </div>
+    <div class="col-auto my-1">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form>
+<!-- stop recipe search form -->
+
+<br>
+
+<% @recipes.each do |recipe| %>
+<div class="card hover">
+  <div class="card-body bg-light">
+    <h5 class="card-title"><%= link_to recipe.title, user_recipe_path(recipe.user_id, recipe.id) %></h5>
+    <p class="card-text"><%= recipe.description %></p>
+  </div>
+</div>
+<br>
+<% end %>

@@ -3,18 +3,28 @@ class RecipesController < ApplicationController
 
   # GET /recipes or /recipes.json
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.where("user_id == ?", current_user.id)
   end
 
   # GET /recipes/1 or /recipes/1.json
   def show
-    @recipe = Recipe.find(params[:id])
+    @user = User.where('id == ?', params[:user_id]).first
+    @recipe = @user.recipes.find_by(params[:id])
     @comment = Comment.new
   end
 
   # GET /recipes/new
   def new
     @recipe = Recipe.new
+  end
+
+  def search
+    @recipes = Recipe.where("title LIKE ?", "%" + params[:q] + "%").order('title ASC')
+    render 
+  end
+
+  def all
+    @recipes = Recipe.all.order('title ASC')
   end
 
   # GET /recipes/1/edit
@@ -27,7 +37,7 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       if @recipe.save
-        format.html { redirect_to @recipe, notice: "Recipe was successfully created." }
+        format.html { redirect_to user_recipes_path, notice: "Recipe was successfully created." }
         format.json { render :show, status: :created, location: @recipe }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +50,7 @@ class RecipesController < ApplicationController
   def update
     respond_to do |format|
       if @recipe.update(recipe_params)
-        format.html { redirect_to @recipe, notice: "Recipe was successfully updated." }
+        format.html { redirect_to user_recipes_path, notice: "Recipe was successfully updated." }
         format.json { render :show, status: :ok, location: @recipe }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,7 +63,7 @@ class RecipesController < ApplicationController
   def destroy
     @recipe.destroy
     respond_to do |format|
-      format.html { redirect_to recipes_url, notice: "Recipe was successfully destroyed." }
+      format.html { redirect_to user_recipes_path, notice: "Recipe was successfully destroyed." }
       format.json { head :no_content }
     end
   end

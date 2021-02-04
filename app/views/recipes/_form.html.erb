@@ -1,22 +1,22 @@
-          <%= form_with(model: recipe) do |f| %>
+          <%= form_for([current_user, current_user.recipes.build]) do |f| %>
             <div class="field form-group">
-              <%= f.text_field :title, class:"form-control", placeholder: "Title", autofocus: true, autocomplete: "email" %>
+              <%= f.label :title %>
+              <%= f.text_field :title, class:"form-control", placeholder: "Title", autofocus: true, placeholder: "Name of this recipe" %>
             </div>
 
             <div class="field form-group">
-              <%= f.text_area :description, class:"form-control", placeholder: "Description", autocomplete: "current-password" %>
+              <%= f.label :description %>
+              <%= f.text_area :description, class:"form-control", placeholder: "Give a brief description of your recipe", rows: 4 %>
             </div>
 
             <div class="field form-group">
-              <%= f.text_area :ingredients, class:"form-control", placeholder: "Ingredients", autocomplete: "current-password" %>
+              <%= f.label :ingredients %>
+              <%= f.text_area :ingredients, class:"form-control", placeholder: "List all of the ingredients required", rows: 10 %>
             </div>
 
             <div class="field form-group">
-              <%= f.text_area :directions, class:"form-control", placeholder: "Directions", autocomplete: "current-password" %>
-            </div>
-
-            <div class="field form-group">
-              <%= f.text_field :user_id, class:"form-control", placeholder: "Instructions", value:current_user.id, autocomplete: "current-password" %>
+              <%= f.label :directions %>
+              <%= f.text_area :directions, class:"form-control", placeholder: "List the steps required", rows: 10 %>
             </div>
 
             <div class="actions">
