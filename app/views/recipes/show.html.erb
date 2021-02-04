@@ -1,0 +1,26 @@
+<h1><%= @recipe.title %></h1>
+
+<div class="float-right">
+    <%= link_to 'Edit', edit_recipe_path(@recipe), class:"btn btn-secondary" %>
+    <%= link_to 'Destroy', @recipe, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+</div>
+
+<br>
+
+<small><%= @recipe.description %></small>
+
+<hr>
+<h3>Ingredients</h3>
+<p><%= simple_format(@recipe.ingredients) %></p>
+
+<h3>Directions</h3>
+<p><%= simple_format(@recipe.directions) %></p>
+
+<br>
+<br>
+<%= render 'layouts/partials/notices' %>
+<%= render 'comments/comments' %>
+<%= render 'comments/form' %>
+
+<br>
+<br>

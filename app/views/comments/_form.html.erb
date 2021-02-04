@@ -1,0 +1,32 @@
+<div class="card">
+  <div class="card-header text-white bg-dark">
+    Leave a comment
+  </div>
+  <div class="card-body bg-light">
+    <%= form_for([@recipe, @recipe.comments.build]) do |form| %>
+      <% if @comment.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+          <ul>
+            <% @comment.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field form-group">
+        <%= form.label :comment %>
+        <%= form.text_area :comment, class:"form-control" %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+

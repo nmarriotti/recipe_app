@@ -1,0 +1,25 @@
+          <%= form_with(model: recipe) do |f| %>
+            <div class="field form-group">
+              <%= f.text_field :title, class:"form-control", placeholder: "Title", autofocus: true, autocomplete: "email" %>
+            </div>
+
+            <div class="field form-group">
+              <%= f.text_area :description, class:"form-control", placeholder: "Description", autocomplete: "current-password" %>
+            </div>
+
+            <div class="field form-group">
+              <%= f.text_area :ingredients, class:"form-control", placeholder: "Ingredients", autocomplete: "current-password" %>
+            </div>
+
+            <div class="field form-group">
+              <%= f.text_area :directions, class:"form-control", placeholder: "Directions", autocomplete: "current-password" %>
+            </div>
+
+            <div class="field form-group">
+              <%= f.text_field :user_id, class:"form-control", placeholder: "Instructions", value:current_user.id, autocomplete: "current-password" %>
+            </div>
+
+            <div class="actions">
+              <%= f.submit "Create Recipe", class:"btn btn-primary" %>
+            </div>
+          <% end %>

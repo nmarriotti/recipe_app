@@ -1,1 +1,10 @@
-<h1>This is the homepage</h1>
+<%= render 'layouts/partials/notices' %>
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Never lose a recipe again!</h1>
+    <p class="lead">Create an account, add some friends, and share recipes with one another.</p>
+    <br>
+    <%= link_to "Sign in", new_user_session_path, class:"btn btn-primary btn-lg" %>
+  </div>
+</div>

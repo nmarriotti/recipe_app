@@ -8,9 +8,29 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <style>
+    .footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      color: white;
+      text-align: center;
+    }
+  </style>
+
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="d-flex flex-column">
+
+    <%= render 'layouts/partials/navbar' %>
+    <div id="page-content">
+      <div class="container">
+        <br><br>
+        <%= yield %>
+      </div>
+    </div>
+
   </body>
 </html>

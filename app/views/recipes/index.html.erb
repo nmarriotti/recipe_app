@@ -1,0 +1,10 @@
+<h1>My Recipes</h1>
+<%= link_to 'New Recipe', new_recipe_path, class:"btn btn-secondary" %>
+<br>
+<br>
+
+<% if @recipes.count > 0 %>
+  <%= render 'recipes_list' %>
+<% else %>
+  <p> You dont have any recipes :(
+<% end %>
