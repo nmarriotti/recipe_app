@@ -3,12 +3,12 @@ class RecipesController < ApplicationController
 
   # GET /recipes or /recipes.json
   def index
-    @recipes = Recipe.where("user_id == ?", current_user.id)
+    @recipes = Recipe.where("user_id = ?", current_user.id)
   end
 
   # GET /recipes/1 or /recipes/1.json
   def show
-    @user = User.where('id == ?', params[:user_id]).first
+    @user = User.where('id = ?', params[:user_id]).first
     @recipe = @user.recipes.find_by(params[:id])
     @comment = Comment.new
   end
