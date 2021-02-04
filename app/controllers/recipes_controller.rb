@@ -8,8 +8,8 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1 or /recipes/1.json
   def show
-    @user = User.where('id = ?', params[:user_id]).first
-    @recipe = @user.recipes.where('user_id = ?', params[:id])
+    @user = User.find(params[:user_id])
+    @recipe = @user.recipes.find(params[:id])
     @comment = Comment.new
   end
 
