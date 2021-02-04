@@ -121,6 +121,7 @@ GEM
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
+    rack-timeout (0.3.2)
     rails (6.1.1)
       actioncable (= 6.1.1)
       actionmailbox (= 6.1.1)
@@ -219,6 +220,7 @@ DEPENDENCIES
   pg (~> 1.2, >= 1.2.3)
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
+  rack-timeout (= 0.3.2)
   rails (~> 6.1.1)
   sass-rails (>= 6)
   selenium-webdriver
@@ -231,3 +233,6 @@ DEPENDENCIES
 
 RUBY VERSION
    ruby 2.7.2p137
+
+BUNDLED WITH
+   2.1.4
